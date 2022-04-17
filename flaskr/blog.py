@@ -116,7 +116,7 @@ class Delete(MethodView):
 blog_view = Blog.as_view("blog")
 create_view = Create.as_view("create")
 update_view = Update.as_view("update")
-delete_view = Update.as_view("delete")
+delete_view = Delete.as_view("delete")
 
 
 blog_bp.add_url_rule(
