@@ -1,4 +1,4 @@
-import imp
+import importlib
 import os
 
 from flask import Flask
