@@ -1,0 +1,27 @@
+#exclude:
+# for installation see https://pre-commit.com/
+
+repos:
+    - repo: local
+      hooks:
+          - id: pylint
+            name: pylint
+            entry: pylint
+            language: system
+            pass_filenames: true
+            files: py$
+    - repo: https://github.com/psf/black
+      rev: 22.3.0
+      hooks:
+          - id: black
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v1.2.3
+      hooks:
+          - id: requirements-txt-fixer
+          - id: debug-statements
+          - id: pretty-format-json
+            args: ["--top-keys=device_id,project,builds,do_supress", "--indent=4", "--autofix"]
+          - id: no-commit-to-branch
+            args: [--branch, master]
+          - id: mixed-line-ending
+            args: ["-f", "lf"]
