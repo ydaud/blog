@@ -1,3 +1,7 @@
+# pylint: disable=redefined-outer-name
+"""
+Test Fixtures
+"""
 import os
 import tempfile
 
@@ -11,6 +15,9 @@ with open(os.path.join(os.path.dirname(__file__), "data.sql"), "rb") as f:
 
 @pytest.fixture
 def app():
+    """
+    Call app factory and pass in test_config
+    """
     db_fd, db_path = tempfile.mkstemp()
 
     app = create_app(
@@ -32,27 +39,36 @@ def app():
 
 @pytest.fixture
 def client(app):
+    """Call test client to make requrests"""
     return app.test_client()
 
 
 @pytest.fixture
 def runner(app):
+    """Runner that can call click commands"""
     return app.test_cli_runner()
 
 
-class AuthActions(object):
+class AuthActions:
+    """
+    Authentication shortcuts
+    """
+
     def __init__(self, client):
         self._client = client
 
     def login(self, username="test", password="test"):
+        """Login to application"""
         return self._client.post(
             "/auth/login", data={"username": username, "password": password}
         )
 
     def logout(self):
+        """Logout of application"""
         return self._client.get("/auth/logout")
 
 
 @pytest.fixture
 def auth(client):
+    """Fixture for auth shortcuts"""
     return AuthActions(client)
