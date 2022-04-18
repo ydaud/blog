@@ -1,7 +1,8 @@
 """
 Authentication views for flask blog app
 """
-from flask import Blueprint, flash, g, redirect, render_template, request, url_for
+from flask import (Blueprint, flash, g, redirect, render_template, request,
+                   url_for)
 from flask.views import MethodView
 from werkzeug.exceptions import abort
 
