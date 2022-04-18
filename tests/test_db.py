@@ -1,5 +1,4 @@
 # pylint: disable=missing-function-docstring
-# pylint: disable=missing-class-docstring
 """
 Test database functions
 """
